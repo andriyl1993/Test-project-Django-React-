@@ -1,0 +1,23 @@
+.form-group img {
+    float: left;
+}
+.form-group div input {
+	/*max-width: 20% !important;*/
+}
+
+.alert-warning {
+    display: inline;
+    margin-left: 100px;
+}
+
+.m-b-40 {
+	margin-bottom: 40px;
+}
+
+.m-t-25 {
+	margin-top: 25px;
+}
+
+.form-group .Select {
+	width: 20%;
+}
