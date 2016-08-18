@@ -8,6 +8,7 @@ from models import status
 from wrappers import good_validation, cart_valid
 from bl import get_full_cart_info, get_cart, new_cart, all_stringify_goods, get_pay_systems, \
 	is_enable_count_goods, get_pay_system
+from django.views.decorators.csrf import csrf_exempt
 
 def get_all_goods(request):
 	goods = all_stringify_goods()
@@ -17,6 +18,7 @@ def get_all_goods(request):
 
 	return HttpResponse(json.dumps(goods))
 
+@csrf_exempt
 @cart_valid
 @good_validation
 def cart_add(request):
@@ -36,6 +38,7 @@ def cart_get(request):
 
 	return HttpResponse(json.dumps(cart_data))
 
+@csrf_exempt
 def cart_remove(request):
 	id = request.POST.get('id')
 
@@ -57,6 +60,7 @@ def good_exist(request, id):
 	else:
 		return HttpResponse(status.get('error'))
 
+@csrf_exempt
 def confirm_pay(request):
 	data = request.POST
 	pay_system = data.get('pay_system')
@@ -84,6 +88,7 @@ def confirm_pay(request):
 
 	return HttpResponse(res)
 
+@csrf_exempt
 def pay(request):
 	card_number = request.POST.get('card_number')
 	cart = get_cart(request.session.get('cart'))
